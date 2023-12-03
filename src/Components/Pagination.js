@@ -5,7 +5,11 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 
   return (
     <nav className="mt-4">
-      <ul className="flex">
+       
+      <ul className="flex  items-center">
+      <div className="mr-3">
+            <h1>page {currentPage}{" "} of {" "} {totalPages}</h1>
+        </div>
         {pageNumbers.map(number => (
           <li key={number} className={`mr-2 ${number === currentPage ? 'bg-red-500 text-white' : 'bg-gray-300'}`}>
             <button

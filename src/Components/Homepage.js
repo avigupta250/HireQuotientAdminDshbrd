@@ -9,7 +9,7 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const ApiDataList = () => {
   const [data, setData] = useState([]);
-  const [copiedData,setCopiedData]=useState([])
+//   const [copiedData,setCopiedData]=useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [editableId, setEditableId] = useState(null);
   const [editedValues, setEditedValues] = useState({

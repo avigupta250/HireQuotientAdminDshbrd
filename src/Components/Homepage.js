@@ -186,7 +186,7 @@ const ApiDataList = () => {
                 <input
                   type="checkbox"
                
-                  checked={selectAll}
+                  checked={selectedIds.includes(item.id)}
                   onChange={() => handleCheckboxChange(item.id)}
                   className="mr-4"
                 />

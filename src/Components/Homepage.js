@@ -9,7 +9,7 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const ApiDataList = () => {
   const [data, setData] = useState([]);
-//   const [copiedData,setCopiedData]=useState([])
+    const [copiedData,setCopiedData]=useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [editableId, setEditableId] = useState(null);
   const [editedValues, setEditedValues] = useState({
@@ -26,7 +26,6 @@ const ApiDataList = () => {
     fetchData();
   }, []);
 
- 
   async function fetchData() {
     try {
       const response = await fetch(
@@ -35,7 +34,7 @@ const ApiDataList = () => {
 
       const data = await response.json();
       setData(data);
-    //   setCopiedData(data)
+        setCopiedData(data)
     } catch (error) {
       console.error("Error during fetching data:", error);
     }
@@ -47,13 +46,17 @@ const ApiDataList = () => {
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
-  const handleSearch = () => {
-    const filteredData = data.filter(
-      (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.email.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setData(filteredData);
+  const handleSearch = (term) => {
+    if (term.length === 0) {
+      setData(copiedData)
+    } else {
+      const filteredData = data.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setData(filteredData);
+    }
   };
 
   const handlePageChange = (newPage) => {
@@ -68,7 +71,7 @@ const ApiDataList = () => {
 
   const handleSave = () => {
     if (Object.values(editedValues).every((value) => value.trim() !== "")) {
-    const index = data.findIndex((item) => item.id === editableId);
+      const index = data.findIndex((item) => item.id === editableId);
 
       if (index !== -1) {
         setData((prevData) => {
@@ -87,7 +90,6 @@ const ApiDataList = () => {
       console.log("Saving edited data:", editedValues);
       setEditableId(null);
     } else {
-      
       alert("Please fill all the input fields before saving.");
     }
   };
@@ -150,8 +152,8 @@ const ApiDataList = () => {
             placeholder="Search by Name or Email"
             value={searchTerm}
             onChange={(e) => {
-                setSearchTerm(e.target.value)
-                 handleSearch();
+              setSearchTerm(e.target.value);
+              handleSearch(e.target.value);
             }}
             className="p-2 border border-gray-300 mr-2"
           />
@@ -229,14 +231,14 @@ const ApiDataList = () => {
               </td>
               <td className="py-2 px-4 border-b">
                 {editableId === item.id ? (
-                   <select
-                   name="role"
-                   value={editedValues.role}
-                   onChange={e => handleInputChange("role", e.target.value)}
-                 >
-                   <option value={"admin"}>admin</option>
-                   <option value={"member"}>member</option>
-                 </select>
+                  <select
+                    name="role"
+                    value={editedValues.role}
+                    onChange={(e) => handleInputChange("role", e.target.value)}
+                  >
+                    <option value={"admin"}>admin</option>
+                    <option value={"member"}>member</option>
+                  </select>
                 ) : (
                   item.role
                 )}

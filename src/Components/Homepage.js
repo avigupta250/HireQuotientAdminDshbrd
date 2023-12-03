@@ -35,7 +35,7 @@ const ApiDataList = () => {
 
       const data = await response.json();
       setData(data);
-      setCopiedData(data)
+    //   setCopiedData(data)
     } catch (error) {
       console.error("Error during fetching data:", error);
     }

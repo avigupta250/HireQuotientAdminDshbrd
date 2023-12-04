@@ -121,11 +121,17 @@ const ApiDataList = () => {
     }
   };
   const handleDeleteSelected = () => {
-    setData((prevData) =>
-      prevData.filter((item) => !selectedIds.includes(item.id))
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete all the selected entry?"
     );
-    setSelectedIds([]);
-    setSelectAll(false);
+
+    if (confirmDelete) {
+      setData((prevData) =>
+        prevData.filter((item) => !selectedIds.includes(item.id))
+      );
+      setSelectedIds([]);
+      setSelectAll(false);
+    }
   };
 
   const handleCheckboxChange = (id) => {

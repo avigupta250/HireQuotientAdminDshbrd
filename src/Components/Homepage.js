@@ -9,7 +9,7 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const ApiDataList = () => {
   const [data, setData] = useState([]);
-    const [copiedData,setCopiedData]=useState([])
+  const [copiedData, setCopiedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [editableId, setEditableId] = useState(null);
   const [editedValues, setEditedValues] = useState({
@@ -34,7 +34,7 @@ const ApiDataList = () => {
 
       const data = await response.json();
       setData(data);
-        setCopiedData(data)
+      setCopiedData(data);
     } catch (error) {
       console.error("Error during fetching data:", error);
     }
@@ -48,7 +48,7 @@ const ApiDataList = () => {
 
   const handleSearch = (term) => {
     if (term.length === 0) {
-      setData(copiedData)
+      setData(copiedData);
     } else {
       const filteredData = data.filter(
         (item) =>
@@ -166,7 +166,9 @@ const ApiDataList = () => {
         </div>
 
         <button
-          className="bg-red-500 text-white py-2 px-4 rounded mb-4"
+          className={`${
+            selectedIds.length === 0 ? "bg-red-300" : "bg-red-500"
+          } text-white py-2 px-4 rounded mb-4`}
           onClick={handleDeleteSelected}
           disabled={selectedIds.length === 0}
         >

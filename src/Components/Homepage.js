@@ -184,7 +184,7 @@ const ApiDataList = () => {
                   type="checkbox"
                   checked={selectAll}
                   onChange={handleSelectAllChange}
-                  className="mr-4 "
+                  className="mr-4 cursor-pointer"
                 />
                 <h1>Name</h1>
               </div>
@@ -206,7 +206,7 @@ const ApiDataList = () => {
                   type="checkbox"
                   checked={selectedIds.includes(item.id)}
                   onChange={() => handleCheckboxChange(item.id)}
-                  className="mr-4"
+                  className="mr-4 cursor-pointer"
                 />
                 {editableId === item.id ? (
                   <input
